@@ -1,7 +1,9 @@
 import {AlphaScrollItem} from "./AlphaScrollItem";
+import {CasingEnums} from "../enums/casing.enums";
 
 export class AlphaScrollInit {
   scrollList: AlphaScrollItem [];
+  casing: CasingEnums;
   sortByFirstName: boolean;
   delimiter?: string;
   displayContactPhoto: boolean;
@@ -14,6 +16,7 @@ export class AlphaScrollInit {
 
   constructor(scrollList: AlphaScrollItem[],
               sortByFirstName: boolean = true,
+              casing: CasingEnums = CasingEnums.capFirst,
               delimiter: string = ',',
               displayContactPhoto: boolean = false,
               button1Title?: string,
@@ -23,6 +26,7 @@ export class AlphaScrollInit {
               button3Title?: string,
               button3Icon?: string) {
     this.scrollList = scrollList;
+    this.casing = casing;
     this.sortByFirstName = sortByFirstName;
     this.delimiter = delimiter;
     this.displayContactPhoto = displayContactPhoto;

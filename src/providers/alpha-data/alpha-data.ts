@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {AlphaScrollItem} from "../../assets/models/AlphaScrollItem";
 import {AlphaScrollGroups} from "../../assets/models/AlphaScrollGroups";
+import {CasingEnums} from "../../assets/enums/casing.enums";
 
 /*
   Generated class for the AlphaDataProvider provider.
@@ -17,14 +18,16 @@ export class AlphaDataProvider {
   /**
    * Creates a collection of the items sorted by first or list name and grouped by the first character
    * @param {AlphaScrollItem[]} dataList
+   * @param {CasingEnums} casing
    * @param {boolean} sortByFirstName
    * @returns {AlphaScrollGroups}
    */
-  createAlphaScrollGroups(dataList: AlphaScrollItem [], sortByFirstName: boolean = true): AlphaScrollGroups {
+  createAlphaScrollGroups(dataList: AlphaScrollItem [], casing: CasingEnums, sortByFirstName: boolean = true): AlphaScrollGroups {
     this.sortList(dataList, sortByFirstName);
     let scrollGroups = new AlphaScrollGroups();
 
     for (let alphaItem of dataList) {
+      this.setCasing(alphaItem, casing);//using this for loop to set the casing standard as well
       let groupBy = sortByFirstName ? alphaItem.firstName : alphaItem.lastName;
       let isCategorized = false;
       let loopCount = 0;
@@ -95,4 +98,43 @@ export class AlphaDataProvider {
     })
   }
 
+  /**
+   * Sets the casing for the display
+   * @param {AlphaScrollItem} item
+   * @param {CasingEnums} casing
+   */
+  private setCasing(item: AlphaScrollItem, casing: CasingEnums){
+    switch (casing){
+      case CasingEnums.upper:
+        item.firstName = (item.firstName) ? item.firstName.toUpperCase() : "";
+        item.lastName = (item.lastName) ? item.lastName.toUpperCase() : "";
+        break;
+      case CasingEnums.lower:
+        item.firstName = (item.firstName) ? item.firstName.toLowerCase() : "";
+        item.lastName = (item.lastName) ? item.lastName.toLowerCase() : "";
+        break;
+      case CasingEnums.capFirst:
+        item.firstName = this.capitalizeFirstLetter(item.firstName);
+        item.lastName = this.capitalizeFirstLetter(item.lastName);
+        break;
+    }
+  }
+
+  /**
+   * Handles setting the first letter to a capital
+   * @param {String} word
+   * @returns {any}
+   */
+  private capitalizeFirstLetter(word: String){
+    if(word !== undefined && word !== null && word.length <= 0){
+      if(word.length === 1){
+        return word.toUpperCase();
+      }else if(word.length > 1){
+        word = word.toLowerCase();
+        word = word.substr(0, 1) + word.substr(1, word.length);
+      }
+    }else{
+      return "";
+    }
+  }
 }

@@ -31,4 +31,7 @@ export let samples: AlphaScrollItem[] = [
   {firstName: "[", lastName: "Puppyton"},
   {firstName: "Mr.Barker", lastName: "Puppyton"},
   {firstName: "@", lastName: "Puppyton"},
+  {firstName: "r", lastName: "upperCaseTest"},
+  {firstName: "rr", lastName: "upperCaseTest"},
+  {firstName: "rrr", lastName: "upperCaseTest"}
 ];

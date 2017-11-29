@@ -42,7 +42,7 @@ export class AlphaScrollComponent {
     this.button3Title = initParams.button3Title;
     this.button3Icon = initParams.button3Icon;
 
-    this.scrollGroups = this._alphaData.createAlphaScrollGroups(this.scrollList, this.sortByFirstName);
+    this.scrollGroups = this._alphaData.createAlphaScrollGroups(this.scrollList, this.sortByFirstName, initParams.casing);
   }
 
   @Output() onClick = new EventEmitter<AlphaScrollItem>();
