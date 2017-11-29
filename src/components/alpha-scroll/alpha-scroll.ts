@@ -17,6 +17,7 @@ import {Content} from "ionic-angular";
 })
 export class AlphaScrollComponent {
 
+  private searchTerm: string;
   private scrollList: AlphaScrollItem [];
   private sortByFirstName: boolean = true;
   private delimiter: string = '';
@@ -105,5 +106,9 @@ export class AlphaScrollComponent {
     } catch (e) {
       console.log('failed to scroll to id', id);
     }
+  }
+
+  searchList(){
+
   }
 }
