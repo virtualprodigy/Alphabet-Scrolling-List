@@ -14,7 +14,7 @@ export class AlphaScrollInit {
 
   constructor(scrollList: AlphaScrollItem[],
               sortByFirstName: boolean = true,
-              delimiter: string = '',
+              delimiter: string = ',',
               displayContactPhoto: boolean = false,
               button1Title?: string,
               button1Icon?: string,

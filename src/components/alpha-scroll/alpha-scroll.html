@@ -7,10 +7,10 @@
       <ion-item (click)="onItemClick(item)">
         <ion-avatar item-start *ngIf="!displayContactPhoto && item.photoUri "><img [src]="item.photoUri"></ion-avatar>
         <div id="firstName" *ngIf="sortByFirstName">
-          <span [innerHTML]="item.title"></span><span [innerHTML]="item.firstName"></span><span [innerHTML]="delimiter"></span><span [innerHTML]="item.lastName"></span>
+          <span [innerHTML]="item.title"></span><span [innerHTML]="item.firstName"></span><span [innerHTML]="delimiter"></span>&nbsp;<span [innerHTML]="item.lastName"></span>
         </div>
         <div id="lastName" *ngIf="!sortByFirstName">
-          <span [innerHTML]="item.lastName"></span><span [innerHTML]="delimiter"></span><span [innerHTML]="item.title"></span><span [innerHTML]="item.firstName"></span>
+          <span [innerHTML]="item.lastName"></span><span [innerHTML]="delimiter"></span>&nbsp;<span [innerHTML]="item.title"></span><span [innerHTML]="item.firstName"></span>
         </div>
       </ion-item>
       <ion-item-options side="left">
