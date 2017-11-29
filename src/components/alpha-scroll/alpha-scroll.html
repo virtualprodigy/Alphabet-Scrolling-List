@@ -1,3 +1,4 @@
+<ion-content>
 <ion-list>
   <div *ngFor="let scrollGroup of scrollGroups?.alphaScrollGroups">
     <ion-item-divider id="{{scrollGroup.categoryChar.toLowerCase()}}" *ngIf="scrollGroup.categoryList.length > 0">
@@ -23,31 +24,32 @@
 </ion-list>
 
 <ul id="alpha-scroll-bar">
-  <li><a href='#a'>A</a></li>
-  <li><a href='#b'>B</a></li>
-  <li><a href='#c'>C</a></li>
-  <li><a href='#d'>D</a></li>
-  <li><a href='#e'>E</a></li>
-  <li><a href='#f'>F</a></li>
-  <li><a href='#g'>G</a></li>
-  <li><a href='#h'>H</a></li>
-  <li><a href='#i'>I</a></li>
-  <li><a href='#j'>J</a></li>
-  <li><a href='#k'>K</a></li>
-  <li><a href='#l'>L</a></li>
-  <li><a href='#m'>M</a></li>
-  <li><a href='#n'>N</a></li>
-  <li><a href='#o'>O</a></li>
-  <li><a href='#p'>P</a></li>
-  <li><a href='#q'>Q</a></li>
-  <li><a href='#r'>R</a></li>
-  <li><a href='#s'>S</a></li>
-  <li><a href='#t'>T</a></li>
-  <li><a href='#u'>U</a></li>
-  <li><a href='#v'>V</a></li>
-  <li><a href='#w'>W</a></li>
-  <li><a href='#x'>X</a></li>
-  <li><a href='#y'>Y</a></li>
-  <li><a href='#z'>Z</a></li>
-  <li><a href='##'>#</a></li>
+  <li><span (click)="scrollToElement('a')">A</span></li>
+  <li><span (click)="scrollToElement('b')">B</span></li>
+  <li><span (click)="scrollToElement('c')">C</span></li>
+  <li><span (click)="scrollToElement('d')">D</span></li>
+  <li><span (click)="scrollToElement('e')">E</span></li>
+  <li><span (click)="scrollToElement('f')">F</span></li>
+  <li><span (click)="scrollToElement('g')">G</span></li>
+  <li><span (click)="scrollToElement('h')">H</span></li>
+  <li><span (click)="scrollToElement('i')">I</span></li>
+  <li><span (click)="scrollToElement('j')">J</span></li>
+  <li><span (click)="scrollToElement('k')">K</span></li>
+  <li><span (click)="scrollToElement('l')">L</span></li>
+  <li><span (click)="scrollToElement('m')">M</span></li>
+  <li><span (click)="scrollToElement('n')">N</span></li>
+  <li><span (click)="scrollToElement('o')">O</span></li>
+  <li><span (click)="scrollToElement('p')">P</span></li>
+  <li><span (click)="scrollToElement('q')">Q</span></li>
+  <li><span (click)="scrollToElement('r')">R</span></li>
+  <li><span (click)="scrollToElement('s')">S</span></li>
+  <li><span (click)="scrollToElement('t')">T</span></li>
+  <li><span (click)="scrollToElement('u')">U</span></li>
+  <li><span (click)="scrollToElement('v')">V</span></li>
+  <li><span (click)="scrollToElement('w')">W</span></li>
+  <li><span (click)="scrollToElement('x')">X</span></li>
+  <li><span (click)="scrollToElement('y')">Y</span></li>
+  <li><span (click)="scrollToElement('z')">Z</span></li>
+  <li><span (click)="scrollToElement('#')">#</span></li>
 </ul>
+</ion-content>

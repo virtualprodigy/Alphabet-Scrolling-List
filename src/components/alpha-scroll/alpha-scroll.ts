@@ -1,8 +1,9 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, EventEmitter, Input, Output, ViewChild} from '@angular/core';
 import {AlphaScrollItem} from "../../assets/models/AlphaScrollItem";
 import {AlphaDataProvider} from "../../providers/alpha-data/alpha-data";
 import {AlphaScrollGroups} from "../../assets/models/AlphaScrollGroups";
 import {AlphaScrollInit} from "../../assets/models/AlphaScrollInit";
+import {Content} from "ionic-angular";
 
 /**
  * Generated class for the AlphaScrollComponent component.
@@ -53,6 +54,7 @@ export class AlphaScrollComponent {
   @Output() button1EventEmitter = new EventEmitter<any>();
   @Output() button2EventEmitter = new EventEmitter<any>();
   @Output() button3EventEmitter = new EventEmitter<any>();
+  @ViewChild(Content) content: Content;
 
   private scrollGroups: AlphaScrollGroups;
 
@@ -86,5 +88,22 @@ export class AlphaScrollComponent {
    */
   private button3Event() {
     this.button3EventEmitter.emit();
+  }
+
+  /**
+   * Scrolls to the selected header
+   * @param id
+   */
+  scrollToElement(id) {
+    try {
+      let element = document.getElementById(id);
+      let anchorRect = element.getBoundingClientRect();
+      let dividers = document.getElementsByTagName("ion-item-divider");
+      let dividerHeight = dividers[0].getBoundingClientRect().top;
+      console.log(dividers);
+      this.content.scrollTo(0, anchorRect.top - dividerHeight, 350);
+    } catch (e) {
+      console.log('failed to scroll to id', id);
+    }
   }
 }
