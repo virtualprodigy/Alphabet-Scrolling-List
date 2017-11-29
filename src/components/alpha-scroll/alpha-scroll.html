@@ -1,16 +1,23 @@
-
 <ion-list>
-  <ion-item-sliding #item>
-    <ion-item>
-      Item
-    </ion-item>
-    <ion-item-options side="left" (click)="">
-    </ion-item-options>
-
-    <ion-item-options side="right">
-      <!--<button ion-button (click)="button1Event"><ion-icon [name]="button1Icon"></ion-icon>{{button1Title}}</button>-->
-      <!--<button ion-button (click)="button2Event"><ion-icon [name]="button2Icon"></ion-icon>{{button2Title}}</button>-->
-      <!--<button ion-button (click)="button3Event"><ion-icon [name]="button3Icon"></ion-icon>{{button3Title}}</button>-->
-    </ion-item-options>
-  </ion-item-sliding>
+  <div *ngFor="let scrollGroup of scrollGroups.alphaScrollGroups">
+    <ion-item-divider [hide]="scrollGroup.categoryList <= 0">
+      <span>{{scrollGroup.categoryChar}}</span>
+    </ion-item-divider>
+    <ion-item-sliding *ngFor="let item of scrollGroup.categoryList" *ngIf="scrollGroup.categoryList > 0">
+      <ion-item (click)="onItemClick(item)">
+        <ion-avatar item-start [hide]="!displayContactPhoto&& item.photoUri "><img [src]="item.photoUri"></ion-avatar>
+        <div id="firstName" *ngIf="sortByFirstName">
+          <span>{{item.title}}</span><span>{{item.firstName}}</span><span>{{delimiter}}</span><span>{{item.lastName}}</span>
+        </div>
+        <div id="lastName" *ngIf="!sortByFirstName">
+          <span>{{item.lastName}}</span><span>{{delimiter}}</span><span>{{item.title}}</span><span>{{item.firstName}}</span>
+        </div>
+      </ion-item>
+      <ion-item-options side="left">
+        <!--<button ion-button (click)="button1Event"><ion-icon [name]="button1Icon"></ion-icon>{{button1Title}}</button>-->
+        <!--<button ion-button (click)="button2Event"><ion-icon [name]="button2Icon"></ion-icon>{{button2Title}}</button>-->
+        <!--<button ion-button (click)="button3Event"><ion-icon [name]="button3Icon"></ion-icon>{{button3Title}}</button>-->
+      </ion-item-options>
+    </ion-item-sliding>
+  </div>
 </ion-list>
