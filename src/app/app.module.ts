@@ -6,7 +6,6 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { AlphaDataProvider } from '../providers/alpha-data/alpha-data';
 import {AlphaScrollModule} from "../components/alpha-scroll.module";
 import {AlphaScrollComponent} from "../components/alpha-scroll/alpha-scroll";
 
@@ -30,7 +29,7 @@ import {AlphaScrollComponent} from "../components/alpha-scroll/alpha-scroll";
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    AlphaDataProvider
+
   ]
 })
 export class AppModule {}
