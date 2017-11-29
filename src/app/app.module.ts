@@ -7,6 +7,8 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { AlphaDataProvider } from '../providers/alpha-data/alpha-data';
+import {AlphaScrollModule} from "../components/alpha-scroll.module";
+import {AlphaScrollComponent} from "../components/alpha-scroll/alpha-scroll";
 
 @NgModule({
   declarations: [
@@ -15,12 +17,14 @@ import { AlphaDataProvider } from '../providers/alpha-data/alpha-data';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    AlphaScrollModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    HomePage,
+    AlphaScrollComponent
   ],
   providers: [
     StatusBar,

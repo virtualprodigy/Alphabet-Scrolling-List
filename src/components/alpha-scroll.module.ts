@@ -5,4 +5,4 @@ import { AlphaScrollComponent } from './alpha-scroll/alpha-scroll';
 	imports: [],
 	exports: [AlphaScrollComponent]
 })
-export class ComponentsModule {}
+export class AlphaScrollModule {}
