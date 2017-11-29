@@ -43,8 +43,6 @@ export class AlphaScrollComponent {
     this.button3Icon = initParams.button3Icon;
 
     this.scrollGroups = this._alphaData.createAlphaScrollGroups(this.scrollList, this.sortByFirstName);
-    console.log("alpha list", this.scrollList);
-    console.log("alpha groups", this.scrollGroups);
   }
 
   @Output() onClick = new EventEmitter<AlphaScrollItem>();
@@ -61,6 +59,7 @@ export class AlphaScrollComponent {
   }
 
   private onItemClick(alphaItem: AlphaScrollItem) {
+    console.log("alpha list item click, firing emitter", alphaItem);
     this.onClick.emit(alphaItem);
   }
 
