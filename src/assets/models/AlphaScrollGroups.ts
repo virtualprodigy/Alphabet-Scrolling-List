@@ -4,6 +4,7 @@ export class AlphaScrollGroups{
   alphaScrollGroups : AlphaScrollGroup[];
 
   constructor(){
+    this.alphaScrollGroups = [];
     this.alphaScrollGroups.push({categoryChar: 'A', categoryList: []});
     this.alphaScrollGroups.push({categoryChar: 'B', categoryList: []});
     this.alphaScrollGroups.push({categoryChar: 'C', categoryList: []});
