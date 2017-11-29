@@ -5,7 +5,7 @@ export class AlphaScrollInit {
   scrollList: AlphaScrollItem [];
   casing: CasingEnums;
   sortByFirstName: boolean;
-  delimiter?: string;
+  delimiter: string;
   displayContactPhoto: boolean;
   button1Title: string;
   button1Icon: string;
@@ -16,7 +16,7 @@ export class AlphaScrollInit {
 
   constructor(scrollList: AlphaScrollItem[],
               sortByFirstName: boolean = true,
-              casing: CasingEnums = CasingEnums.capFirst,
+              casing: CasingEnums = CasingEnums.upper,
               delimiter: string = ',',
               displayContactPhoto: boolean = false,
               button1Title?: string,

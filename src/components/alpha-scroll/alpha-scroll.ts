@@ -29,6 +29,7 @@ export class AlphaScrollComponent {
 
   @Input()
   set init(initParams: AlphaScrollInit) {
+    console.log(initParams);
     this.scrollList = initParams.scrollList;
     this.sortByFirstName = initParams.sortByFirstName;
     this.delimiter = initParams.delimiter;
@@ -42,7 +43,8 @@ export class AlphaScrollComponent {
     this.button3Title = initParams.button3Title;
     this.button3Icon = initParams.button3Icon;
 
-    this.scrollGroups = this._alphaData.createAlphaScrollGroups(this.scrollList, this.sortByFirstName, initParams.casing);
+    this.scrollGroups = this._alphaData.createAlphaScrollGroups(this.scrollList,  initParams.casing, this.sortByFirstName);
+    console.log(this.scrollGroups );
   }
 
   @Output() onClick = new EventEmitter<AlphaScrollItem>();

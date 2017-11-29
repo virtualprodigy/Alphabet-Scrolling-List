@@ -1,5 +1,5 @@
 <ion-list>
-  <div *ngFor="let scrollGroup of scrollGroups.alphaScrollGroups">
+  <div *ngFor="let scrollGroup of scrollGroups?.alphaScrollGroups">
     <ion-item-divider *ngIf="scrollGroup.categoryList.length > 0">
       <span>{{scrollGroup.categoryChar}}</span>
     </ion-item-divider>

@@ -13,6 +13,7 @@ export class HomePage {
   init:AlphaScrollInit;
   constructor(public navCtrl: NavController) {
     this.init = new AlphaScrollInit(this.list);
+    console.log("creating init", this.init);
   }
 
   sampleClick(event: AlphaScrollItem){

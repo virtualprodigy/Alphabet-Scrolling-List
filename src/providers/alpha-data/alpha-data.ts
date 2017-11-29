@@ -125,13 +125,14 @@ export class AlphaDataProvider {
    * @param {String} word
    * @returns {any}
    */
-  private capitalizeFirstLetter(word: String){
-    if(word !== undefined && word !== null && word.length <= 0){
+  private capitalizeFirstLetter(word: string){
+    if(word !== undefined && word !== null && word.length > 0){
       if(word.length === 1){
         return word.toUpperCase();
-      }else if(word.length > 1){
+      }else {
         word = word.toLowerCase();
-        word = word.substr(0, 1) + word.substr(1, word.length);
+        word = word.substr(0, 1).toUpperCase() + word.substr(1, word.length);
+        return word;
       }
     }else{
       return "";
