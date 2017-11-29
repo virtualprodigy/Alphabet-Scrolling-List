@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {AlphaScrollItem} from "../../assets/models/AlphaScrollItem";
 import {AlphaDataProvider} from "../../providers/alpha-data/alpha-data";
 import {AlphaScrollGroups} from "../../assets/models/AlphaScrollGroups";
+import {AlphaScrollInit} from "../../assets/models/AlphaScrollInit";
 
 /**
  * Generated class for the AlphaScrollComponent component.
@@ -10,36 +11,58 @@ import {AlphaScrollGroups} from "../../assets/models/AlphaScrollGroups";
  * Components.
  */
 @Component({
-  selector: 'alpha-scroll',
+  selector: 'vp-alpha-scroll',
   templateUrl: 'alpha-scroll.html'
 })
 export class AlphaScrollComponent {
-  @Input() scrollList: AlphaScrollItem [];
-  @Input() sortByFirstName: boolean = true;
-  @Input() delimiter: string = '';
-  @Input() displayContactPhoto: boolean = false;
+
+  private scrollList: AlphaScrollItem [];
+  private sortByFirstName: boolean = true;
+  private delimiter: string = '';
+  private displayContactPhoto: boolean = false;
+  private button1Title?: string;//title of the button
+  private button1Icon?: string;//name of the ion-icon to use
+  private button2Title?: string;//title of the button
+  private button2Icon?: string;//name of the ion-icon to use
+  private button3Title?: string;//title of the button
+  private button3Icon?: string;//name of the ion-icon to use
+
+  @Input()
+  set init(initParams: AlphaScrollInit) {
+    this.scrollList = initParams.scrollList;
+    this.sortByFirstName = initParams.sortByFirstName;
+    this.delimiter = initParams.delimiter;
+    this.displayContactPhoto = initParams.displayContactPhoto;
+
+    //TODO enable users to set their own swipe buttons
+    this.button1Title = initParams.button1Title;
+    this.button1Icon = initParams.button1Icon;
+    this.button2Title = initParams.button2Title;
+    this.button2Icon = initParams.button2Icon;
+    this.button3Title = initParams.button3Title;
+    this.button3Icon = initParams.button3Icon;
+
+    console.log("alpha comp", this.scrollList);
+    this.scrollGroups = this._alphaData.createAlphaScrollGroups(this.scrollList, this.sortByFirstName);
+  }
+
   @Output() onClick = new EventEmitter<AlphaScrollItem>();
 
-  @Input() button1Title: string;//title of the button
-  @Input() button1Icon: string;//name of the ion-icon to use
+
   @Output() button1EventEmitter = new EventEmitter<any>();
-  @Input() button2Title: string;//title of the button
-  @Input() button2Icon: string;//name of the ion-icon to use
   @Output() button2EventEmitter = new EventEmitter<any>();
-  @Input() button3Title: string;//title of the button
-  @Input() button3Icon: string;//name of the ion-icon to use
   @Output() button3EventEmitter = new EventEmitter<any>();
 
   private scrollGroups: AlphaScrollGroups;
 
   constructor(private _alphaData: AlphaDataProvider) {
-    this.scrollGroups = _alphaData.createAlphaScrollGroups(this.scrollList, this.sortByFirstName);
 
   }
 
-  private onItemClick(alphaItem: AlphaScrollItem){
+  private onItemClick(alphaItem: AlphaScrollItem) {
     this.onClick.emit(alphaItem);
   }
+
   /**
    * Event callback for slide option button 1
    */

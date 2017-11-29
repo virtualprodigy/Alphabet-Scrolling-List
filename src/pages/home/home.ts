@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import {samples} from "../../assets/data/SampleData";
+import {AlphaScrollInit} from "../../assets/models/AlphaScrollInit";
 
 @Component({
   selector: 'page-home',
@@ -8,8 +9,9 @@ import {samples} from "../../assets/data/SampleData";
 })
 export class HomePage {
   list = samples;
+  init:AlphaScrollInit;
   constructor(public navCtrl: NavController) {
-    console.log("list", this.list);
+    this.init = new AlphaScrollInit(this.list);
   }
 
   sample(event){
