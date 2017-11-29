@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {AlphaScrollItem} from "../../assets/models/AlphaScrollItem";
 import {AlphaScrollGroups} from "../../assets/models/AlphaScrollGroups";
 import {CasingEnums} from "../../assets/enums/casing.enums";
+import {AlphaScrollGroup} from "../../assets/models/AlphaScrollGroup";
 
 /*
   Generated class for the AlphaDataProvider provider.
@@ -137,5 +138,60 @@ export class AlphaDataProvider {
     }else{
       return "";
     }
+  }
+
+  /**
+   * Sets the hide value on the group and children based on if they match a search term or not
+   * @param {AlphaScrollGroups} scrollGroups
+   * @param {string searchTerm}
+   */
+   searchList(scrollGroups : AlphaScrollGroups,searchTerm : string = ''){
+    searchTerm = searchTerm.toLowerCase().replace(/,|\.|-/g, ' ');
+    let searchTerms = searchTerm.split(' ').filter(w => !!w.trim().length);
+
+    scrollGroups.alphaScrollGroups.forEach((group: AlphaScrollGroup) => {
+      group.hide = true;
+
+      group.categoryList.forEach((alphaScrollItem: any) => {
+        // check if this session should show or not
+        this.filterAlphaScrollItem(alphaScrollItem, searchTerms);
+
+        if (!alphaScrollItem.hide) {
+          // if this session is not hidden then this group should show
+          group.hide = false;
+        }
+      });
+
+    });
+
+
+  }
+
+  /**
+   * Checks if the passed in search items title, first or last name matches the
+   * search terms
+   * @param alphaScrollItem
+   * @param {string[]} searchTerms
+   */
+  private filterAlphaScrollItem(alphaScrollItem: AlphaScrollItem, searchTerms: string[]) {
+
+    let matchesSearchTerms = false;
+    if (searchTerms.length) {
+      //check if it matches any of the words
+      searchTerms.forEach((queryWord: string) => {
+        if (alphaScrollItem.title && alphaScrollItem.title.toLowerCase().indexOf(queryWord) > -1) {
+          matchesSearchTerms = true;
+        }else if (alphaScrollItem.firstName && alphaScrollItem.firstName.toLowerCase().indexOf(queryWord) > -1) {
+          matchesSearchTerms = true;
+        } else if (alphaScrollItem.lastName && alphaScrollItem.lastName.toLowerCase().indexOf(queryWord) > -1) {
+          matchesSearchTerms = true;
+        }
+      });
+    } else {
+      //empty search passes for all
+      matchesSearchTerms = true;
+    }
+
+    alphaScrollItem.hide = !(matchesSearchTerms);
   }
 }

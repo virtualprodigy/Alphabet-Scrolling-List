@@ -15,10 +15,13 @@
 
   <ion-list>
     <div *ngFor="let scrollGroup of scrollGroups?.alphaScrollGroups">
-      <ion-item-divider id="{{scrollGroup.categoryChar.toLowerCase()}}" *ngIf="scrollGroup.categoryList.length > 0">
+      <ion-item-divider id="{{scrollGroup.categoryChar.toLowerCase()}}"
+                        *ngIf="scrollGroup.categoryList.length > 0"
+                        [hidden]="scrollGroup.hide">
         <span>{{scrollGroup.categoryChar}}</span>
       </ion-item-divider>
-      <ion-item-sliding *ngFor="let item of scrollGroup.categoryList">
+      <ion-item-sliding *ngFor="let item of scrollGroup.categoryList"
+                        [hidden]="item.hide">
         <ion-item (click)="onItemClick(item)">
           <ion-avatar item-start *ngIf="!displayContactPhoto && item.photoUri "><img [src]="item.photoUri"></ion-avatar>
           <div id="firstName" *ngIf="sortByFirstName">

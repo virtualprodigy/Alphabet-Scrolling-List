@@ -109,6 +109,7 @@ export class AlphaScrollComponent {
   }
 
   searchList(){
-
+    console.log("search by term", this.searchTerm);
+    this._alphaData.searchList(this.scrollGroups, this.searchTerm);
   }
 }

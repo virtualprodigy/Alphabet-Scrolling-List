@@ -4,4 +4,5 @@ export interface AlphaScrollItem {
   lastName: string;
   object?: any;
   photoUri?: string;
+  hide?:boolean;
 }
