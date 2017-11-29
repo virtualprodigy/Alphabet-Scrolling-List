@@ -1,4 +1,9 @@
 vp-alpha-scroll {
+  * {
+    font-family: Arial, sans-serif;
+
+  }
+
   #alpha-scroll-bar {
     transform: translate(0%, -50%);
     list-style-type: none;
@@ -41,12 +46,21 @@ vp-alpha-scroll {
     }
   }
   ion-item-divider {
-
+    background: #EEEEEE;
+    color: black;
+    border: none;
+    font-weight: 700;
   }
-  .firstName {
-
+  #firstName {//highlight by the sorted word
+    font-weight: 500;
+    span:nth-child(2){
+      font-weight: 700;
+    }
   }
-  .lastName {
-
+  #lastName {//highlight by the sorted word
+    font-weight: 500;
+    span:nth-child(1){
+      font-weight: 700;
+    }
   }
 }
