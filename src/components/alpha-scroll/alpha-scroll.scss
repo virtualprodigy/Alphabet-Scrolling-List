@@ -10,13 +10,27 @@ vp-alpha-scroll {
     margin-right: 2vw;
     z-index: 1000;
 
+    li:nth-child(1){
+      background: rgba(245,245,245, .75);
+      border-top-left-radius: 50% !important;
+      border-top-right-radius: 50% !important;
+      padding-top: 2vw;
+    }
+    li:last-of-type{
+      background: rgba(245,245,245, .75);
+      border-bottom-left-radius: 50% !important;
+      border-bottom-right-radius: 50% !important;
+      padding-bottom: 5vw;
+    }
     li {
+      padding: 1vw;
       height: 2.5vh;
       min-height: 2.5vh;
       display: block;
       color: black;
+      background: rgba(245,245,245, .75);
 
-      a, a:hover, a:active, a:visited {
+      span, span:hover, span:active, span:visited {
         padding-top: 50%;
         display: block;
         text-decoration: none;
