@@ -1,6 +1,6 @@
 <ion-list>
   <div *ngFor="let scrollGroup of scrollGroups?.alphaScrollGroups">
-    <ion-item-divider *ngIf="scrollGroup.categoryList.length > 0">
+    <ion-item-divider id="{{scrollGroup.categoryChar.toLowerCase()}}" *ngIf="scrollGroup.categoryList.length > 0">
       <span>{{scrollGroup.categoryChar}}</span>
     </ion-item-divider>
     <ion-item-sliding *ngFor="let item of scrollGroup.categoryList"  >
@@ -22,7 +22,7 @@
   </div>
 </ion-list>
 
-<ul id="scrollBar">
+<ul id="alpha-scroll-bar">
   <li><a href='#a'>A</a></li>
   <li><a href='#b'>B</a></li>
   <li><a href='#c'>C</a></li>

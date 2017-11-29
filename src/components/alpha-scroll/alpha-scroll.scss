@@ -1,14 +1,38 @@
-alpha-scroll {
-  #scrollBar {
+vp-alpha-scroll {
+  #alpha-scroll-bar {
+    transform: translate(0%, -50%);
+    list-style-type: none;
+    right: 0;
+    top: 0;
+    top: 50%;
+    position: fixed;
+    height: 70%;
+    margin-right: 2vw;
+    z-index: 1000;
 
+    li {
+      height: 2.5vh;
+      min-height: 2.5vh;
+      display: block;
+      color: black;
+
+      a, a:hover, a:active, a:visited {
+        padding-top: 50%;
+        display: block;
+        text-decoration: none;
+        color: gray;
+        text-align: center;
+      }
+
+    }
   }
   ion-item-divider {
 
   }
-  .firstName{
+  .firstName {
 
   }
-  .lastName{
-    
+  .lastName {
+
   }
 }
