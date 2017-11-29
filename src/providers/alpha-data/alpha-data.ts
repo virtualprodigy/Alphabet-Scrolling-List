@@ -16,35 +16,47 @@ export class AlphaDataProvider {
 
   /**
    * Creates a collection of the items sorted by first or list name and grouped by the first character
-   * @param {AlphaScrollItem[]} list
+   * @param {AlphaScrollItem[]} dataList
    * @param {boolean} sortByFirstName
    * @returns {AlphaScrollGroups}
    */
-  createAlphaScrollGroups(list: AlphaScrollItem [], sortByFirstName: boolean = true): AlphaScrollGroups {
-    this.sortList(list, sortByFirstName);
+  createAlphaScrollGroups(dataList: AlphaScrollItem [], sortByFirstName: boolean = true): AlphaScrollGroups {
+    this.sortList(dataList, sortByFirstName);
     let scrollGroups = new AlphaScrollGroups();
 
-    for (let alphaItem of list) {
+    for (let alphaItem of dataList) {
       let groupBy = sortByFirstName ? alphaItem.firstName : alphaItem.lastName;
-
+      let isCategorized = false;
+      let loopCount = 0;
       for (let group of scrollGroups.alphaScrollGroups) {
 
         try {
-          if (groupBy === undefined || groupBy === null || groupBy.length < 1 || !groupBy.match('[A-Za-z]')) {
+          if (groupBy === undefined || groupBy === null
+            || groupBy.length <= 0 || !groupBy.substr(0, 1).match('[A-Za-z]')) {
             //    add non letter, and empty strings to the # group
             scrollGroups.alphaScrollGroups[26].categoryList.push(alphaItem);
+            // console.log("category case 1", alphaItem);
+            isCategorized = true;
+            break;
           } else if (group.categoryChar.toLowerCase() === groupBy.substr(0, 1).toLowerCase()) {
             //    add to the correct group
+            // console.log("category case 2", alphaItem);
             group.categoryList.push(alphaItem);
-          } else {
+            isCategorized = true;
+            break;
+          } else if(!isCategorized && loopCount === scrollGroups.alphaScrollGroups.length){
+            //default can't categories
+            // console.log("category case default", isCategorized, loopCount, scrollGroups.alphaScrollGroups.length);
             scrollGroups.alphaScrollGroups[26].categoryList.push(alphaItem);
+            isCategorized = true;
           }
+          loopCount = loopCount + 1;
         } catch (e) {
           console.log("Unable to determine the correct alphabetical group, defaulting this item to #");
           scrollGroups.alphaScrollGroups[26].categoryList.push(alphaItem);
         }
 
-      }
+      }//end inner loop
 
     }
 
