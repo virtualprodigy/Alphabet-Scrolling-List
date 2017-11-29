@@ -18,7 +18,7 @@
     ]
   },
   "files": [
-    "vp-alpha-scroll.ts"
+    "vp-alphabetical-scroller.ts"
   ],
   "include": [
     "src/**/*.ts"
