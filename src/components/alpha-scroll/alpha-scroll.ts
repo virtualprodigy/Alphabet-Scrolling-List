@@ -16,7 +16,7 @@ export class AlphaScrollComponent {
 @Input() scrollList: AlphaScrollItem [];
 @Output() onClick : EventEmitter<AlphaScrollItem>;
   constructor() {
-    
+
   }
 
 }
