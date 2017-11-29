@@ -93,9 +93,9 @@ export class AlphaScrollComponent {
 
   /**
    * Scrolls to the selected header
-   * @param id
+   * @param {string} id
    */
-  scrollToElement(id) {
+  scrollToElement(id: string) {
     try {
       let element = document.getElementById(id);
       let anchorRect = element.getBoundingClientRect();
