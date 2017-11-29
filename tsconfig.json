@@ -1,12 +1,13 @@
 {
   "compilerOptions": {
+    "noImplicitAny": true,
     "allowSyntheticDefaultImports": true,
-    "declaration": false,
+    "declaration": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "lib": [
       "dom",
-      "es2015"
+      "es2015",
     ],
     "module": "es2015",
     "moduleResolution": "node",
@@ -16,6 +17,9 @@
       "../node_modules/@types"
     ]
   },
+  "files": [
+    "vp-alpha-scroll.ts"
+  ],
   "include": [
     "src/**/*.ts"
   ],
