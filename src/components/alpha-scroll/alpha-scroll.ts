@@ -292,7 +292,7 @@ export class AlphaScrollComponent {
    */
   scrollToElement(id: string) {
     try {
-      let element = document.getElementById(id);
+      let element = document.getElementById('vp-alpha-scroll-'+id);
       let anchorRect = element.getBoundingClientRect();
       let dividers = document.getElementsByTagName("ion-item-divider");
       let dividerHeight = dividers[0].getBoundingClientRect().top;
