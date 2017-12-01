@@ -10,9 +10,9 @@ For a pull request, fork the latest code and create your change. Then submit a p
 
 ##DEVELOPER NOTES
 
-testing
+##Testing
 
-1. first prepublish it and test it locallay using the below commands
+1. first prepublish it and test it locally using the below commands
 npm run prepublish 
 
 2. run the following in the npm package directory (library you're creating):
