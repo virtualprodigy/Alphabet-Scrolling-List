@@ -1,12 +1,13 @@
 # Alphabet-Scrolling-List
 This is an open-source project to provide an easy to use Alphabet Scrolling List. A great use-case for this is a contact list.
-This library is in it's early stages, so please bare with me. If you see any issues please leave them on the Github Repo's list list.
-Feel free to create Pull-Request if you know of a useful improve. 
+This library is in it's early stages, so please bare with me. If you see any issues please leave them on the Github Repo's list list. Feel free to create Pull-Request if you know of a useful improve. 
+https://github.com/virtualprodigy/Alphabet-Scrolling-List
 
 #Intro
 Thank you for using this small library I created. It's purpose is to provide an easy and resusble alphabetical scrolling list.
 
 #Setup
+
 ####Module Setup
 In your moudle import the following
 import {AlphaScrollModule, AlphaScrollComponent} from 'vp-alphabetical-scroller/vp-alphabetical-scroller';
