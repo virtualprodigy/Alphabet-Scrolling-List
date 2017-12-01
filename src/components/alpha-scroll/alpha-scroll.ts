@@ -13,7 +13,7 @@ import {Content} from "ionic-angular";
  */
 @Component({
   selector: 'vp-alpha-scroll',
-  templateUrl: 'alpha-scroll.html',
+  // templateUrl: 'alpha-scroll.html',
   template: '<ion-header>\n' +
   '  <ion-toolbar [color]="searchBarColor">\n' +
   '    <ion-searchbar (ionInput)="searchList()"\n' +
