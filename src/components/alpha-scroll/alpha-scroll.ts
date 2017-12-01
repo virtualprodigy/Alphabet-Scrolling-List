@@ -29,12 +29,13 @@ import {Content} from "ionic-angular";
   '</ion-header>\n' +
   '<ion-content padding="false">\n' +
   '\n' +
-  '  <ion-list>\n' +
+  '  <ion-list id="vp-alpha-scroll-list">\n' +
   '    <div *ngFor="let scrollGroup of scrollGroups?.alphaScrollGroups">\n' +
   '      <ion-item-divider id="{{\'vp-alpha-scroll-\'}}{{scrollGroup.categoryChar.toLowerCase()}}"\n' +
   '                        *ngIf="scrollGroup.categoryList.length > 0"\n' +
   '                        [hidden]="scrollGroup.hide"' +
-  '                         class="vp-alpha-scroll-item-divider">\n' +
+  '                         class="vp-alpha-scroll-item-divider">' +
+  '                         <!--adds padding to the list so the header isn\'t covering it-->{{addListPadding()}}\n' +
   '        <span>{{scrollGroup.categoryChar}}</span>\n' +
   '      </ion-item-divider>\n' +
   '      <ion-item-sliding *ngFor="let item of scrollGroup.categoryList"\n' +
@@ -90,7 +91,7 @@ import {Content} from "ionic-angular";
   '  </ul>\n' +
   '</ion-content>\n',
 
-  styles:['vp-alpha-scroll > ion-content > div.scroll-content {\n' +
+  styles: ['vp-alpha-scroll > ion-content > div.scroll-content {\n' +
   '  margin-top: 0px !important;\n' +
   '  padding: 0px !important;\n' +
   '}\n' +
@@ -188,6 +189,8 @@ export class AlphaScrollComponent {
   private button3Title?: string;//title of the button
   private button3Icon?: string;//name of the ion-icon to use
 
+  private isListPaddingSet = false;
+
   @Input()
   set init(initParams: AlphaScrollInit) {
     console.log(initParams);
@@ -204,9 +207,10 @@ export class AlphaScrollComponent {
     this.button3Title = initParams.button3Title;
     this.button3Icon = initParams.button3Icon;
 
-    this.scrollGroups = this._alphaData.createAlphaScrollGroups(this.scrollList,  initParams.casing, this.sortByFirstName);
-    console.log(this.scrollGroups );
+    this.scrollGroups = this._alphaData.createAlphaScrollGroups(this.scrollList, initParams.casing, this.sortByFirstName);
+    console.log(this.scrollGroups);
     this.setContentMargins();
+
   }
 
   @Output() onClick = new EventEmitter<AlphaScrollItem>();
@@ -222,18 +226,38 @@ export class AlphaScrollComponent {
   constructor(private _alphaData: AlphaDataProvider) {
 
   }
-setContentMargins(){
-  //dynamically add css for no margins or padding
-  let style = document.createElement('style');
-  style.type = 'text/css';
-  style.innerHTML = '.vp_content_placement { margin-top: 0px !important; padding: 0px !important; }';
-  document.getElementsByTagName('head')[0].appendChild(style);
 
-  let vp_scroll = document.getElementsByTagName("vp-alpha-scroll");
-  let scrollContent = vp_scroll[0].getElementsByClassName("scroll-content")[0];
-  scrollContent.classList.add("vp_content_placement");
+  /**
+   * adjust the ion-content margins so the layout displays properly
+   */
+  private setContentMargins() {
+    //dynamically add css for no margins or padding
+    let style = document.createElement('style');
+    style.type = 'text/css';
+    style.innerHTML = '.vp_content_placement { margin-top: 0px !important; padding: 0px !important; }';
+    document.getElementsByTagName('head')[0].appendChild(style);
 
-}
+    let vp_scroll = document.getElementsByTagName("vp-alpha-scroll");
+    let scrollContent = vp_scroll[0].getElementsByClassName("scroll-content")[0];
+    scrollContent.classList.add("vp_content_placement");
+  }
+
+  /**
+   * Add paddign so the list view is visible
+   */
+  private addListPadding() {
+    if (!this.isListPaddingSet) {//limit to one run
+      this.isListPaddingSet = true;
+      let dividers = document.getElementsByClassName('vp-alpha-scroll-item-divider');
+      console.log("dividers", dividers);
+      let dividerRect = dividers[0].getBoundingClientRect();
+
+      let list = document.getElementById("vp-alpha-scroll-list");
+      list.style.marginTop = dividerRect.height + "px";
+    }
+
+  }
+
   private onItemClick(alphaItem: AlphaScrollItem) {
     console.log("alpha list item click, firing emitter", alphaItem);
     this.onClick.emit(alphaItem);
@@ -279,7 +303,7 @@ setContentMargins(){
     }
   }
 
-  searchList(){
+  searchList() {
     console.log("search by term", this.searchTerm);
     this._alphaData.searchList(this.scrollGroups, this.searchTerm);
   }
