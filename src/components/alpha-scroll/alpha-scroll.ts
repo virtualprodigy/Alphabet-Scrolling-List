@@ -258,6 +258,10 @@ export class AlphaScrollComponent {
 
   }
 
+  /**
+   * Callback when item is clicked
+   * @param {AlphaScrollItem} alphaItem
+   */
   private onItemClick(alphaItem: AlphaScrollItem) {
     console.log("alpha list item click, firing emitter", alphaItem);
     this.onClick.emit(alphaItem);
