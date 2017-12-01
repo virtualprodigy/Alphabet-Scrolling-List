@@ -89,7 +89,90 @@ import {Content} from "ionic-angular";
   '    <li><span (click)="scrollToElement(\'#\')">#</span></li>\n' +
   '  </ul>\n' +
   '</ion-content>\n',
-  styles:['']
+
+  styles:['vp-alpha-scroll > ion-content > div.scroll-content {\n' +
+  '  margin-top: 0px !important;\n' +
+  '  padding: 0px !important;\n' +
+  '}\n' +
+  '\n' +
+  'vp-alpha-scroll > * {\n' +
+  '  font-family: Arial, sans-serif;\n' +
+  '\n' +
+  '}\n' +
+  '\n' +
+  '//this class needs to be dynamically injected to the head\n' +
+  '//.vp_content_placement{\n' +
+  '//  margin-top: 0px !important;\n' +
+  '//  padding: 0px !important;\n' +
+  '//}\n' +
+  '\n' +
+  '#alpha-scroll-bar {\n' +
+  '  transform: translate(0%, -50%);\n' +
+  '  list-style-type: none;\n' +
+  '  right: 0;\n' +
+  '  top: 0;\n' +
+  '  top: 50%;\n' +
+  '  position: fixed;\n' +
+  '  height: 70%;\n' +
+  '  margin-right: 2vw;\n' +
+  '  z-index: 1000;\n' +
+  '}\n' +
+  '\n' +
+  '#alpha-scroll-bar > li:nth-child(1) {\n' +
+  '  background: rgba(245, 245, 245, .75);\n' +
+  '  border-top-left-radius: 50% !important;\n' +
+  '  border-top-right-radius: 50% !important;\n' +
+  '  padding-top: 2vw;\n' +
+  '}\n' +
+  '\n' +
+  '#alpha-scroll-bar > li:last-of-type {\n' +
+  '  border-bottom-left-radius: 50% !important;\n' +
+  '  border-bottom-right-radius: 50% !important;\n' +
+  '  padding-bottom: 8vw;\n' +
+  '}\n' +
+  '\n' +
+  '#alpha-scroll-bar > li {\n' +
+  '  padding: 1vw;\n' +
+  '  height: 2.5vh;\n' +
+  '  min-height: 2.5vh;\n' +
+  '  display: block;\n' +
+  '  color: black;\n' +
+  '  background: rgba(245, 245, 245, .75);\n' +
+  '}\n' +
+  '\n' +
+  '#alpha-scroll-bar > li > span,\n' +
+  '#alpha-scroll-bar > li > span:hover,\n' +
+  '#alpha-scroll-bar > li > span:active,\n' +
+  '#alpha-scroll-bar > li > span:visited {\n' +
+  '  padding-top: 50%;\n' +
+  '  display: block;\n' +
+  '  text-decoration: none;\n' +
+  '  color: gray;\n' +
+  '  text-align: center;\n' +
+  '}\n' +
+  '\n' +
+  '.vp-alpha-scroll-item-divider {\n' +
+  '  background: #EEEEEE;\n' +
+  '  color: black !important;\n' +
+  '  border: none;\n' +
+  '  font-weight: 700;\n' +
+  '}\n' +
+  '\n' +
+  '#vp-alpha-scroll-firstName { //highlight by the sorted word\n' +
+  '  font-weight: 500;\n' +
+  '}\n' +
+  '\n' +
+  '#vp-alpha-scroll-firstName > span:nth-child(2) {\n' +
+  '  font-weight: 700;\n' +
+  '}\n' +
+  '\n' +
+  '#vp-alpha-scroll-lastName { //highlight by the sorted word\n' +
+  '  font-weight: 500;\n' +
+  '}\n' +
+  '\n' +
+  '#vp-alpha-scroll-firstName > span:nth-child(1) {\n' +
+  '  font-weight: 700;\n' +
+  '}\n']
 })
 export class AlphaScrollComponent {
 
@@ -123,6 +206,7 @@ export class AlphaScrollComponent {
 
     this.scrollGroups = this._alphaData.createAlphaScrollGroups(this.scrollList,  initParams.casing, this.sortByFirstName);
     console.log(this.scrollGroups );
+    this.setContentMargins();
   }
 
   @Output() onClick = new EventEmitter<AlphaScrollItem>();
@@ -138,7 +222,18 @@ export class AlphaScrollComponent {
   constructor(private _alphaData: AlphaDataProvider) {
 
   }
+setContentMargins(){
+  //dynamically add css for no margins or padding
+  let style = document.createElement('style');
+  style.type = 'text/css';
+  style.innerHTML = '.vp_content_placement { margin-top: 0px !important; padding: 0px !important; }';
+  document.getElementsByTagName('head')[0].appendChild(style);
 
+  let vp_scroll = document.getElementsByTagName("vp-alpha-scroll");
+  let scrollContent = vp_scroll[0].getElementsByClassName("scroll-content")[0];
+  scrollContent.classList.add("vp_content_placement");
+
+}
   private onItemClick(alphaItem: AlphaScrollItem) {
     console.log("alpha list item click, firing emitter", alphaItem);
     this.onClick.emit(alphaItem);
