@@ -7,6 +7,9 @@ https://github.com/virtualprodigy/Alphabet-Scrolling-List
 Thank you for using this small library I created. It's purpose is to provide an easy and resusble alphabetical scrolling list.
 
 #Setup
+Install the library from npm https://npmjs.com/package/vp-alphabetical-scroller
+npm install vp-alphabetical-scroller
+
 
 ####Module Setup
 In your moudle import the following
