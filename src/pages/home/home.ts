@@ -12,7 +12,7 @@ export class HomePage {
   list = samples;
   init:AlphaScrollInit;
   constructor(public navCtrl: NavController) {
-    this.init = new AlphaScrollInit(this.list);
+    this.init = new AlphaScrollInit(this.list, undefined,"bush" );
     console.log("creating init", this.init);
   }
 

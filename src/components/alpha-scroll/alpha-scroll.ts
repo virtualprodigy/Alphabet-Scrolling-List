@@ -13,9 +13,9 @@ import {Content} from "ionic-angular";
  */
 @Component({
   selector: 'vp-alpha-scroll',
-  // templateUrl: 'alpha-scroll.html'
+  // templateUrl: 'alpha-scroll.html',
   template: '<ion-header>\n' +
-  '  <ion-toolbar color="light">\n' +
+  '  <ion-toolbar [color]="searchBarColor">\n' +
   '    <ion-searchbar (ionInput)="searchList()"\n' +
   '                   [(ngModel)]="searchTerm"\n' +
   '                   [showCancelButton]="false"\n' +
@@ -189,11 +189,12 @@ export class AlphaScrollComponent {
   private button3Title?: string;//title of the button
   private button3Icon?: string;//name of the ion-icon to use
 
-  private isListPaddingSet = false;
-
+  private isListPaddingSet: boolean = false;
+  private searchBarColor: string;//name of a color in your variable scss $colors()
   @Input()
   set init(initParams: AlphaScrollInit) {
     console.log(initParams);
+    this.searchBarColor = initParams.searchBarColor;
     this.scrollList = initParams.scrollList;
     this.sortByFirstName = initParams.sortByFirstName;
     this.delimiter = initParams.delimiter;
