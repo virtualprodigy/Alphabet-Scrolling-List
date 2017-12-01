@@ -3,7 +3,6 @@
   "version": "1.0.4",
   "author": "VirtualProdigy",
   "homepage": "n/a",
-  "private": true,
   "scripts": {
     "prepublish": "tsc",
     "clean": "ionic-app-scripts clean",
