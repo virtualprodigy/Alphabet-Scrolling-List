@@ -8,27 +8,28 @@
                    autocorrect="on"
                    spellcheck="true"
                    debounce="350">
-    ></ion-searchbar>
+    </ion-searchbar>
   </ion-toolbar>
 </ion-header>
 <ion-content padding="false">
 
   <ion-list>
     <div *ngFor="let scrollGroup of scrollGroups?.alphaScrollGroups">
-      <ion-item-divider id="{{scrollGroup.categoryChar.toLowerCase()}}"
+      <ion-item-divider id="{{'vp-alpha-scroll-'}}{{scrollGroup.categoryChar.toLowerCase()}}"
                         *ngIf="scrollGroup.categoryList.length > 0"
-                        [hidden]="scrollGroup.hide">
+                        [hidden]="scrollGroup.hide"
+                        class="vp-alpha-scroll-item-divider">
         <span>{{scrollGroup.categoryChar}}</span>
       </ion-item-divider>
       <ion-item-sliding *ngFor="let item of scrollGroup.categoryList"
                         [hidden]="item.hide">
         <ion-item (click)="onItemClick(item)">
           <ion-avatar item-start *ngIf="!displayContactPhoto && item.photoUri "><img [src]="item.photoUri"></ion-avatar>
-          <div id="firstName" *ngIf="sortByFirstName">
+          <div id="vp-alpha-scroll-firstName" *ngIf="sortByFirstName">
             <span [innerHTML]="item.title"></span><span [innerHTML]="item.firstName"></span><span
             [innerHTML]="delimiter"></span>&nbsp;<span [innerHTML]="item.lastName"></span>
           </div>
-          <div id="lastName" *ngIf="!sortByFirstName">
+          <div id="vp-alpha-scroll-lastName" *ngIf="!sortByFirstName">
             <span [innerHTML]="item.lastName"></span><span [innerHTML]="delimiter"></span>&nbsp;<span
             [innerHTML]="item.title"></span><span [innerHTML]="item.firstName"></span>
           </div>

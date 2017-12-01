@@ -13,7 +13,83 @@ import {Content} from "ionic-angular";
  */
 @Component({
   selector: 'vp-alpha-scroll',
-  templateUrl: 'alpha-scroll.html'
+  // templateUrl: 'alpha-scroll.html'
+  template: '<ion-header>\n' +
+  '  <ion-toolbar color="light">\n' +
+  '    <ion-searchbar (ionInput)="searchList()"\n' +
+  '                   [(ngModel)]="searchTerm"\n' +
+  '                   [showCancelButton]="false"\n' +
+  '                   placeholder="Search"\n' +
+  '                   autocomplete="on"\n' +
+  '                   autocorrect="on"\n' +
+  '                   spellcheck="true"\n' +
+  '                   debounce="350">\n' +
+  '    </ion-searchbar>\n' +
+  '  </ion-toolbar>\n' +
+  '</ion-header>\n' +
+  '<ion-content padding="false">\n' +
+  '\n' +
+  '  <ion-list>\n' +
+  '    <div *ngFor="let scrollGroup of scrollGroups?.alphaScrollGroups">\n' +
+  '      <ion-item-divider id="{{\'vp-alpha-scroll-\'}}{{scrollGroup.categoryChar.toLowerCase()}}"\n' +
+  '                        *ngIf="scrollGroup.categoryList.length > 0"\n' +
+  '                        [hidden]="scrollGroup.hide"' +
+  '                         class="vp-alpha-scroll-item-divider">\n' +
+  '        <span>{{scrollGroup.categoryChar}}</span>\n' +
+  '      </ion-item-divider>\n' +
+  '      <ion-item-sliding *ngFor="let item of scrollGroup.categoryList"\n' +
+  '                        [hidden]="item.hide">\n' +
+  '        <ion-item (click)="onItemClick(item)">\n' +
+  '          <ion-avatar item-start *ngIf="!displayContactPhoto && item.photoUri "><img [src]="item.photoUri"></ion-avatar>\n' +
+  '          <div id="vp-alpha-scroll-firstName" *ngIf="sortByFirstName">\n' +
+  '            <span [innerHTML]="item.title"></span><span [innerHTML]="item.firstName"></span><span\n' +
+  '            [innerHTML]="delimiter"></span>&nbsp;<span [innerHTML]="item.lastName"></span>\n' +
+  '          </div>\n' +
+  '          <div id="vp-alpha-scroll-lastName" *ngIf="!sortByFirstName">\n' +
+  '            <span [innerHTML]="item.lastName"></span><span [innerHTML]="delimiter"></span>&nbsp;<span\n' +
+  '            [innerHTML]="item.title"></span><span [innerHTML]="item.firstName"></span>\n' +
+  '          </div>\n' +
+  '        </ion-item>\n' +
+  '        <ion-item-options side="left">\n' +
+  '          <!--<button ion-button (click)="button1Event"><ion-icon [name]="button1Icon"></ion-icon>{{button1Title}}</button>-->\n' +
+  '          <!--<button ion-button (click)="button2Event"><ion-icon [name]="button2Icon"></ion-icon>{{button2Title}}</button>-->\n' +
+  '          <!--<button ion-button (click)="button3Event"><ion-icon [name]="button3Icon"></ion-icon>{{button3Title}}</button>-->\n' +
+  '        </ion-item-options>\n' +
+  '      </ion-item-sliding>\n' +
+  '    </div>\n' +
+  '  </ion-list>\n' +
+  '\n' +
+  '  <ul id="alpha-scroll-bar">\n' +
+  '    <li><span (click)="scrollToElement(\'a\')">A</span></li>\n' +
+  '    <li><span (click)="scrollToElement(\'b\')">B</span></li>\n' +
+  '    <li><span (click)="scrollToElement(\'c\')">C</span></li>\n' +
+  '    <li><span (click)="scrollToElement(\'d\')">D</span></li>\n' +
+  '    <li><span (click)="scrollToElement(\'e\')">E</span></li>\n' +
+  '    <li><span (click)="scrollToElement(\'f\')">F</span></li>\n' +
+  '    <li><span (click)="scrollToElement(\'g\')">G</span></li>\n' +
+  '    <li><span (click)="scrollToElement(\'h\')">H</span></li>\n' +
+  '    <li><span (click)="scrollToElement(\'i\')">I</span></li>\n' +
+  '    <li><span (click)="scrollToElement(\'j\')">J</span></li>\n' +
+  '    <li><span (click)="scrollToElement(\'k\')">K</span></li>\n' +
+  '    <li><span (click)="scrollToElement(\'l\')">L</span></li>\n' +
+  '    <li><span (click)="scrollToElement(\'m\')">M</span></li>\n' +
+  '    <li><span (click)="scrollToElement(\'n\')">N</span></li>\n' +
+  '    <li><span (click)="scrollToElement(\'o\')">O</span></li>\n' +
+  '    <li><span (click)="scrollToElement(\'p\')">P</span></li>\n' +
+  '    <li><span (click)="scrollToElement(\'q\')">Q</span></li>\n' +
+  '    <li><span (click)="scrollToElement(\'r\')">R</span></li>\n' +
+  '    <li><span (click)="scrollToElement(\'s\')">S</span></li>\n' +
+  '    <li><span (click)="scrollToElement(\'t\')">T</span></li>\n' +
+  '    <li><span (click)="scrollToElement(\'u\')">U</span></li>\n' +
+  '    <li><span (click)="scrollToElement(\'v\')">V</span></li>\n' +
+  '    <li><span (click)="scrollToElement(\'w\')">W</span></li>\n' +
+  '    <li><span (click)="scrollToElement(\'x\')">X</span></li>\n' +
+  '    <li><span (click)="scrollToElement(\'y\')">Y</span></li>\n' +
+  '    <li><span (click)="scrollToElement(\'z\')">Z</span></li>\n' +
+  '    <li><span (click)="scrollToElement(\'#\')">#</span></li>\n' +
+  '  </ul>\n' +
+  '</ion-content>\n',
+  styles:['']
 })
 export class AlphaScrollComponent {
 
