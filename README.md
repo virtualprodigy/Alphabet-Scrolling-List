@@ -54,6 +54,7 @@ Feel free to ost issues on the GitHub Page
 
 #Pull Request
 For a pull request, fork the latest code and create your change. Then submit a pull request to the GitHub account. Upon review, your change maybe pulled in.
+##All Pull Requests must go to the development branch
 
 #License 
   Apache License Version 2.0, Copyright [2017] [VirtualProdigy]
