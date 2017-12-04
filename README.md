@@ -12,7 +12,7 @@ npm install vp-alphabetical-scroller
 
 
 ####Module Setup
-In your moudle import the following
+In your module import the following
 import {AlphaScrollModule, AlphaScrollComponent} from 'vp-alphabetical-scroller/vp-alphabetical-scroller';
 
 Add to the imports
