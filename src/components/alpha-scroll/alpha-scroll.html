@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar color="light">
+  <ion-toolbar [color]="searchBarColor">
     <ion-searchbar (ionInput)="searchList()"
                    [(ngModel)]="searchTerm"
                    [showCancelButton]="false"
@@ -13,12 +13,13 @@
 </ion-header>
 <ion-content >
 
-  <ion-list>
+  <ion-list id="vp-alpha-scroll-list">
     <div *ngFor="let scrollGroup of scrollGroups?.alphaScrollGroups">
       <ion-item-divider id="{{'vp-alpha-scroll-'}}{{scrollGroup.categoryChar.toLowerCase()}}"
                         *ngIf="scrollGroup.categoryList.length > 0"
                         [hidden]="scrollGroup.hide"
                         class="vp-alpha-scroll-item-divider">
+        <!--adds padding to the list so the header isn't covering it-->{{addListPadding()}}
         <span>{{scrollGroup.categoryChar}}</span>
       </ion-item-divider>
       <ion-item-sliding *ngFor="let item of scrollGroup.categoryList"

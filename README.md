@@ -12,7 +12,7 @@ npm install vp-alphabetical-scroller
 
 
 ####Module Setup
-In your moudle import the following
+In your module import the following
 import {AlphaScrollModule, AlphaScrollComponent} from 'vp-alphabetical-scroller/vp-alphabetical-scroller';
 
 Add to the imports
@@ -35,6 +35,8 @@ Pass the directive your init object and optional register to the onClick event e
 #Usage
 AlphaScrollInit: use this to configure how to you want the scroll list to behavoir. Below are the constructor params
   scrollList: AlphaScrollItem [];
+  searchBarColor: string; (optional)
+          name of a color in your variable scss $colors(), by default its primary
   casing: CasingEnums; (optional)
        CasingEnums = upper, lower,capFirst
   sortByFirstName: boolean; (optional)

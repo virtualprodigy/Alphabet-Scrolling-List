@@ -3,6 +3,8 @@ import {CasingEnums} from "../enums/casing.enums";
 
 export class AlphaScrollInit {
   scrollList: AlphaScrollItem [];
+  //name of a color in your variable scss $colors()
+  searchBarColor: string;
   casing: CasingEnums;
   sortByFirstName: boolean;
   delimiter: string;
@@ -16,6 +18,7 @@ export class AlphaScrollInit {
 
   constructor(scrollList: AlphaScrollItem[],
               sortByFirstName: boolean = true,
+              searchBarColor:string = "primary",
               casing: CasingEnums = CasingEnums.upper,
               delimiter: string = ',',
               displayContactPhoto: boolean = false,
@@ -26,6 +29,7 @@ export class AlphaScrollInit {
               button3Title?: string,
               button3Icon?: string) {
     this.scrollList = scrollList;
+    this.searchBarColor = searchBarColor;
     this.casing = casing;
     this.sortByFirstName = sortByFirstName;
     this.delimiter = delimiter;
