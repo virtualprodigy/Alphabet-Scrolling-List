@@ -27,7 +27,7 @@ import {Content} from "ionic-angular";
   '    </ion-searchbar>\n' +
   '  </ion-toolbar>\n' +
   '</ion-header>\n' +
-  '<ion-content padding="false">\n' +
+  '<ion-content #vpAlphaScrollContent padding="false">\n' +
   '\n' +
   '  <ion-list id="vp-alpha-scroll-list">\n' +
   '    <div *ngFor="let scrollGroup of scrollGroups?.alphaScrollGroups">\n' +
@@ -193,7 +193,7 @@ export class AlphaScrollComponent {
   private searchBarColor: string;//name of a color in your variable scss $colors()
   @Input()
   set init(initParams: AlphaScrollInit) {
-    console.log(initParams);
+    // console.log(initParams);
     this.searchBarColor = initParams.searchBarColor;
     this.scrollList = initParams.scrollList;
     this.sortByFirstName = initParams.sortByFirstName;
@@ -209,7 +209,7 @@ export class AlphaScrollComponent {
     this.button3Icon = initParams.button3Icon;
 
     this.scrollGroups = this._alphaData.createAlphaScrollGroups(this.scrollList, initParams.casing, this.sortByFirstName);
-    console.log(this.scrollGroups);
+    // console.log(this.scrollGroups);
     this.setContentMargins();
 
   }
@@ -220,7 +220,7 @@ export class AlphaScrollComponent {
   @Output() button1EventEmitter = new EventEmitter<any>();
   @Output() button2EventEmitter = new EventEmitter<any>();
   @Output() button3EventEmitter = new EventEmitter<any>();
-  @ViewChild(Content) content: Content;
+  @ViewChild('vpAlphaScrollContent') content: Content;
 
   private scrollGroups: AlphaScrollGroups;
 
@@ -250,7 +250,6 @@ export class AlphaScrollComponent {
     if (!this.isListPaddingSet) {//limit to one run
       this.isListPaddingSet = true;
       let dividers = document.getElementsByClassName('vp-alpha-scroll-item-divider');
-      console.log("dividers", dividers);
       let dividerRect = dividers[0].getBoundingClientRect();
 
       let list = document.getElementById("vp-alpha-scroll-list");
@@ -301,10 +300,9 @@ export class AlphaScrollComponent {
       let anchorRect = element.getBoundingClientRect();
       let dividers = document.getElementsByTagName("ion-item-divider");
       let dividerHeight = dividers[0].getBoundingClientRect().top;
-      console.log(dividers);
       this.content.scrollTo(0, anchorRect.top - dividerHeight, 350);
     } catch (e) {
-      console.log('failed to scroll to id', id);
+      console.log('failed to scroll to id', id, e);
     }
   }
 
