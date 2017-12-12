@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, Output, ViewChild} from '@angular/core';
+import {AfterViewChecked, Component, EventEmitter, Input, Output, ViewChild} from '@angular/core';
 import {AlphaScrollItem} from "../../assets/models/AlphaScrollItem";
 import {AlphaDataProvider} from "../../providers/alpha-data/alpha-data";
 import {AlphaScrollGroups} from "../../assets/models/AlphaScrollGroups";
@@ -175,7 +175,7 @@ import {Content} from "ionic-angular";
   '  font-weight: 700;\n' +
   '}\n']
 })
-export class AlphaScrollComponent {
+export class AlphaScrollComponent implements  AfterViewChecked{
 
   private searchTerm: string;
   private scrollList: AlphaScrollItem [];
@@ -304,6 +304,25 @@ export class AlphaScrollComponent {
     } catch (e) {
       console.log('failed to scroll to id', id, e);
     }
+  }
+
+  ngAfterViewChecked(){
+    console.log("Layout update, resize content");
+    this.resizeContent();
+  }
+
+  /**
+   * Some applications seem to require calling resize so scrollto will work. The
+   * issue is the margins get changes, so this method calls rezie and then sets the margin-bottom on the content back
+   * to 0
+   */
+  resizeContent(){
+    this.content.resize();
+    this.content.getFixedElement().style.marginBottom = "0px";
+    this.content.getScrollElement().style.marginBottom = "0px";
+
+    // vp-alpha-scroll > ion-content > div.fixed-content
+    // vp-alpha-scroll > ion-content > div.scroll-content.vp_content_placement
   }
 
   searchList() {
